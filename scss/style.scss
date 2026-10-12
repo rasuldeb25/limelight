@@ -1,0 +1,394 @@
+// ---------------------------------------------
+// Meridian Tours — CSS-only 3D flip cards
+// Task 1, Lime Light TechLead internship
+// Mechanism: hidden checkbox + <label> flips the
+// card around the X axis (vertical flip).
+// ---------------------------------------------
+
+$bg: #faf7f2;
+$ink: #22302e;
+$muted: #7d8a87;
+$accent: #0f766e; // deep teal
+$card-radius: 18px;
+$flip-speed: 0.9s;
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: $bg;
+	color: $ink;
+	font-family: 'Manrope', sans-serif;
+}
+
+// ---------- header ----------
+
+.site-header {
+	max-width: 640px;
+	padding: 3.5em 1.25em 1em;
+	text-align: center;
+
+	.eyebrow {
+		display: inline-block;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		font-size: 0.78em;
+		font-weight: 800;
+		color: $accent;
+
+		i {
+			margin-right: 0.4em;
+		}
+	}
+
+	h1 {
+		margin: 0.4em 0 0.5em;
+		font-family: 'Fraunces', serif;
+		font-weight: 600;
+		font-size: clamp(1.9em, 5vw, 2.9em);
+		line-height: 1.15;
+	}
+
+	.tagline {
+		margin: 0;
+		color: $muted;
+		font-size: 1.02em;
+		line-height: 1.6;
+	}
+}
+
+// ---------- card deck ----------
+
+.deck {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	gap: 2em;
+	padding: 2.5em 1em 1.5em;
+}
+
+.card {
+	width: 330px;
+	height: 460px;
+	perspective: 1800px;
+	transition: transform 0.35s ease;
+
+	// hover lift (before the flip)
+	&:hover {
+		transform: translateY(-10px);
+	}
+
+	.content {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transform-style: preserve-3d;
+		transition: transform $flip-speed cubic-bezier(0.7, 0, 0.3, 1);
+	}
+}
+
+// the checkbox hack: checking the hidden input
+// rotates the whole .content block vertically
+.flip-toggle {
+	display: none;
+
+	&:checked ~ .content {
+		transform: rotateX(-180deg);
+	}
+}
+
+// ---------- shared face styles ----------
+
+.face {
+	position: absolute;
+	inset: 0;
+	border-radius: $card-radius;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+	box-shadow: 0 18px 40px -18px rgba(34, 48, 46, 0.35);
+	overflow: hidden;
+
+	.inner {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		padding: 1.4em;
+		transform: translateZ(60px) scale(0.96);
+	}
+}
+
+// ---------- front ----------
+
+.front {
+	background-size: cover;
+	background-position: center;
+
+	// soft readability gradient at the bottom only
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(20, 26, 25, 0.82) 0%,
+			rgba(20, 26, 25, 0.25) 45%,
+			rgba(20, 26, 25, 0) 70%
+		);
+	}
+
+	.inner {
+		position: relative;
+		z-index: 1;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.chip {
+		background: rgba(250, 247, 242, 0.88);
+		color: $ink;
+		font-size: 0.78em;
+		font-weight: 700;
+		padding: 0.5em 1em;
+		border-radius: 100px;
+
+		i {
+			margin-right: 0.35em;
+			color: $accent;
+		}
+	}
+
+	.caption {
+		margin-top: auto;
+
+		.country {
+			text-transform: uppercase;
+			letter-spacing: 3px;
+			font-size: 0.72em;
+			font-weight: 800;
+			color: rgba(255, 255, 255, 0.85);
+		}
+
+		h2 {
+			margin: 0.15em 0 0.6em;
+			font-family: 'Fraunces', serif;
+			font-weight: 600;
+			font-size: 2.2em;
+			color: #fff;
+		}
+	}
+}
+
+// ---------- back ----------
+
+.back {
+	transform: rotateX(180deg);
+	background-color: #fffdf9;
+	border: 1px solid rgba(34, 48, 46, 0.08);
+
+	.inner {
+		gap: 0.9em;
+	}
+
+	.back-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+
+		h3 {
+			margin: 0;
+			font-family: 'Fraunces', serif;
+			font-weight: 600;
+			font-size: 1.35em;
+		}
+
+		.score {
+			font-weight: 800;
+			font-size: 0.9em;
+			color: $ink;
+
+			i {
+				color: $accent;
+				margin-right: 0.25em;
+			}
+		}
+	}
+
+	.stats {
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		padding: 0.9em 1em;
+		background: $bg;
+		border-radius: 12px;
+
+		li {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.1em;
+
+			i {
+				color: $accent;
+				font-size: 0.95em;
+				margin-bottom: 0.25em;
+			}
+
+			b {
+				font-size: 1.25em;
+			}
+
+			span {
+				font-size: 0.7em;
+				font-weight: 600;
+				color: $muted;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+		}
+	}
+
+	.highlights {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 0.88em;
+		line-height: 1.45;
+		color: darken($muted, 18%);
+		overflow: auto;
+
+		li {
+			position: relative;
+			padding: 0.3em 0 0.3em 1.4em;
+
+			&::before {
+				content: '\2713'; // check mark
+				position: absolute;
+				left: 0;
+				color: $accent;
+				font-weight: 800;
+			}
+		}
+	}
+
+	.back-foot {
+		margin-top: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.price {
+		font-family: 'Fraunces', serif;
+		font-size: 1.5em;
+		font-weight: 600;
+		color: $ink;
+
+		small {
+			font-family: 'Manrope', sans-serif;
+			font-size: 0.5em;
+			font-weight: 700;
+			color: $muted;
+		}
+	}
+}
+
+// ---------- buttons (labels for the checkbox) ----------
+
+.flip-btn {
+	cursor: pointer;
+	align-self: stretch;
+	text-align: center;
+	padding: 0.85em 1.2em;
+	border-radius: 100px;
+	border: 2px solid rgba(255, 255, 255, 0.9);
+	color: #fff;
+	font-weight: 700;
+	font-size: 0.88em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	backface-visibility: hidden;
+	transition: background-color 0.3s ease, color 0.3s ease;
+
+	i {
+		margin-left: 0.5em;
+	}
+
+	&:hover {
+		background-color: #fff;
+		color: $accent;
+	}
+}
+
+.return-btn {
+	cursor: pointer;
+	width: 2.9em;
+	height: 2.9em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	border: 2px solid $accent;
+	color: $accent;
+	backface-visibility: hidden;
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+
+	&:hover {
+		background-color: $accent;
+		color: #fff;
+		transform: rotate(-45deg);
+	}
+}
+
+// ---------- footer ----------
+
+.site-footer {
+	padding: 1.5em 1em 2.5em;
+	color: $muted;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+// ---------- responsive ----------
+
+@media (max-width: 760px) {
+	.deck {
+		gap: 1.4em;
+	}
+}
+
+@media (max-width: 400px) {
+	.card {
+		width: min(330px, 92vw);
+		height: 440px;
+	}
+
+	.site-header {
+		padding-top: 2.5em;
+	}
+}
+
+// ---------- scrollbar (highlights list) ----------
+
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: lighten($accent, 30%);
+	border-radius: 2px;
+
+	&:hover {
+		background: $accent;
+	}
+}

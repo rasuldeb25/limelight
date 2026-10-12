@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Tours — 3D Flip Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <span class="eyebrow"><i class="fa-solid fa-compass"></i> Meridian Tours</span>
+        <h1>Three journeys, one click away</h1>
+        <p class="tagline">Small-group tours crafted around light, food and stories.
+            Tap a card to flip it and see what's inside each trip.</p>
+    </header>
+
+    <main class="deck">
+
+        <!-- Card 1 — Samarkand -->
+        <article class="card">
+            <input type="checkbox" id="trip-samarkand" class="flip-toggle" aria-hidden="true">
+            <div class="content">
+                <div class="face front"
+                    style="background-image: url('https://images.unsplash.com/photo-1605199423916-b725a00b324b?auto=format&fit=crop&w=900&q=80')">
+                    <div class="inner">
+                        <span class="chip"><i class="fa-regular fa-clock"></i> 7 days</span>
+                        <div class="caption">
+                            <span class="country">Uzbekistan</span>
+                            <h2>Samarkand</h2>
+                        </div>
+                        <label for="trip-samarkand" class="flip-btn" aria-hidden="true">
+                            View itinerary <i class="fa-solid fa-rotate"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="inner">
+                        <div class="back-head">
+                            <h3>Silk Road Classic</h3>
+                            <span class="score"><i class="fa-solid fa-star"></i> 4.9</span>
+                        </div>
+                        <ul class="stats">
+                            <li><i class="fa-regular fa-calendar"></i><b>7</b><span>days</span></li>
+                            <li><i class="fa-solid fa-city"></i><b>3</b><span>cities</span></li>
+                            <li><i class="fa-solid fa-user-group"></i><b>12</b><span>max group</span></li>
+                        </ul>
+                        <ul class="highlights">
+                            <li>Sunset over the Registan's turquoise domes</li>
+                            <li>Plov masterclass with a local family</li>
+                            <li>High-speed Afrosiyob train to Bukhara</li>
+                            <li>Paper-mill and winery day in Konigil</li>
+                        </ul>
+                        <div class="back-foot">
+                            <div class="price"><small>from</small> €790 <small>/ person</small></div>
+                            <label for="trip-samarkand" class="return-btn" aria-hidden="true">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 2 — Budapest -->
+        <article class="card">
+            <input type="checkbox" id="trip-budapest" class="flip-toggle" aria-hidden="true">
+            <div class="content">
+                <div class="face front"
+                    style="background-image: url('https://images.unsplash.com/photo-1616432902940-b7a1acbc60b3?auto=format&fit=crop&w=900&q=80')">
+                    <div class="inner">
+                        <span class="chip"><i class="fa-regular fa-clock"></i> 4 days</span>
+                        <div class="caption">
+                            <span class="country">Hungary</span>
+                            <h2>Budapest</h2>
+                        </div>
+                        <label for="trip-budapest" class="flip-btn" aria-hidden="true">
+                            View itinerary <i class="fa-solid fa-rotate"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="inner">
+                        <div class="back-head">
+                            <h3>Danube City Break</h3>
+                            <span class="score"><i class="fa-solid fa-star"></i> 4.8</span>
+                        </div>
+                        <ul class="stats">
+                            <li><i class="fa-regular fa-calendar"></i><b>4</b><span>days</span></li>
+                            <li><i class="fa-solid fa-landmark"></i><b>9</b><span>sights</span></li>
+                            <li><i class="fa-solid fa-user-group"></i><b>10</b><span>max group</span></li>
+                        </ul>
+                        <ul class="highlights">
+                            <li>Night cruise past the Parliament</li>
+                            <li>Soak in the Széchenyi thermal baths</li>
+                            <li>Ruin-bar crawl in the Jewish Quarter</li>
+                            <li>Chimney cake &amp; market hall tasting walk</li>
+                        </ul>
+                        <div class="back-foot">
+                            <div class="price"><small>from</small> €440 <small>/ person</small></div>
+                            <label for="trip-budapest" class="return-btn" aria-hidden="true">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 3 — Lofoten -->
+        <article class="card">
+            <input type="checkbox" id="trip-lofoten" class="flip-toggle" aria-hidden="true">
+            <div class="content">
+                <div class="face front"
+                    style="background-image: url('https://images.unsplash.com/photo-1504233529578-6d46baba6d34?auto=format&fit=crop&w=900&q=80')">
+                    <div class="inner">
+                        <span class="chip"><i class="fa-regular fa-clock"></i> 6 days</span>
+                        <div class="caption">
+                            <span class="country">Norway</span>
+                            <h2>Lofoten</h2>
+                        </div>
+                        <label for="trip-lofoten" class="flip-btn" aria-hidden="true">
+                            View itinerary <i class="fa-solid fa-rotate"></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="inner">
+                        <div class="back-head">
+                            <h3>Arctic Fjord Escape</h3>
+                            <span class="score"><i class="fa-solid fa-star"></i> 5.0</span>
+                        </div>
+                        <ul class="stats">
+                            <li><i class="fa-regular fa-calendar"></i><b>6</b><span>days</span></li>
+                            <li><i class="fa-solid fa-water"></i><b>4</b><span>fjords</span></li>
+                            <li><i class="fa-solid fa-user-group"></i><b>8</b><span>max group</span></li>
+                        </ul>
+                        <ul class="highlights">
+                            <li>Stay in a red rorbu cabin on the water</li>
+                            <li>Northern-lights watch from Reine</li>
+                            <li>Sea-eagle safari through Trollfjord</li>
+                            <li>Hike Reinebringen's panoramic ridge</li>
+                        </ul>
+                        <div class="back-foot">
+                            <div class="price"><small>from</small> €980 <small>/ person</small></div>
+                            <label for="trip-lofoten" class="return-btn" aria-hidden="true">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>Lime Light TechLead internship &middot; Task 1 &middot; CSS-only 3D flip cards (no JavaScript)</p>
+    </footer>
+</body>
+
+</html>

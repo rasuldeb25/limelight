@@ -1,0 +1,316 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #faf7f2;
+  color: #22302e;
+  font-family: "Manrope", sans-serif;
+}
+
+.site-header {
+  max-width: 640px;
+  padding: 3.5em 1.25em 1em;
+  text-align: center;
+}
+.site-header .eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.78em;
+  font-weight: 800;
+  color: #0f766e;
+}
+.site-header .eyebrow i {
+  margin-right: 0.4em;
+}
+.site-header h1 {
+  margin: 0.4em 0 0.5em;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(1.9em, 5vw, 2.9em);
+  line-height: 1.15;
+}
+.site-header .tagline {
+  margin: 0;
+  color: #7d8a87;
+  font-size: 1.02em;
+  line-height: 1.6;
+}
+
+.deck {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 2em;
+  padding: 2.5em 1em 1.5em;
+}
+
+.card {
+  width: 330px;
+  height: 460px;
+  perspective: 1800px;
+  transition: transform 0.35s ease;
+}
+.card:hover {
+  transform: translateY(-10px);
+}
+.card .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.flip-toggle {
+  display: none;
+}
+.flip-toggle:checked ~ .content {
+  transform: rotateX(-180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  box-shadow: 0 18px 40px -18px rgba(34, 48, 46, 0.35);
+  overflow: hidden;
+}
+.face .inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4em;
+  transform: translateZ(60px) scale(0.96);
+}
+
+.front {
+  background-size: cover;
+  background-position: center;
+}
+.front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 26, 25, 0.82) 0%, rgba(20, 26, 25, 0.25) 45%, rgba(20, 26, 25, 0) 70%);
+}
+.front .inner {
+  position: relative;
+  z-index: 1;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.front .chip {
+  background: rgba(250, 247, 242, 0.88);
+  color: #22302e;
+  font-size: 0.78em;
+  font-weight: 700;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+}
+.front .chip i {
+  margin-right: 0.35em;
+  color: #0f766e;
+}
+.front .caption {
+  margin-top: auto;
+}
+.front .caption .country {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.72em;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+}
+.front .caption h2 {
+  margin: 0.15em 0 0.6em;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 2.2em;
+  color: #fff;
+}
+
+.back {
+  transform: rotateX(180deg);
+  background-color: #fffdf9;
+  border: 1px solid rgba(34, 48, 46, 0.08);
+}
+.back .inner {
+  gap: 0.9em;
+}
+.back .back-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.back .back-head h3 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.35em;
+}
+.back .back-head .score {
+  font-weight: 800;
+  font-size: 0.9em;
+  color: #22302e;
+}
+.back .back-head .score i {
+  color: #0f766e;
+  margin-right: 0.25em;
+}
+.back .stats {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.9em 1em;
+  background: #faf7f2;
+  border-radius: 12px;
+}
+.back .stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+}
+.back .stats li i {
+  color: #0f766e;
+  font-size: 0.95em;
+  margin-bottom: 0.25em;
+}
+.back .stats li b {
+  font-size: 1.25em;
+}
+.back .stats li span {
+  font-size: 0.7em;
+  font-weight: 600;
+  color: #7d8a87;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.back .highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.88em;
+  line-height: 1.45;
+  color: rgb(31.8018575851%, 35.3353973168%, 34.519965071%);
+  overflow: auto;
+}
+.back .highlights li {
+  position: relative;
+  padding: 0.3em 0 0.3em 1.4em;
+}
+.back .highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0f766e;
+  font-weight: 800;
+}
+.back .back-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.back .price {
+  font-family: "Fraunces", serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #22302e;
+}
+.back .price small {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.5em;
+  font-weight: 700;
+  color: #7d8a87;
+}
+
+.flip-btn {
+  cursor: pointer;
+  align-self: stretch;
+  text-align: center;
+  padding: 0.85em 1.2em;
+  border-radius: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.flip-btn i {
+  margin-left: 0.5em;
+}
+.flip-btn:hover {
+  background-color: #fff;
+  color: #0f766e;
+}
+
+.return-btn {
+  cursor: pointer;
+  width: 2.9em;
+  height: 2.9em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #0f766e;
+  color: #0f766e;
+  backface-visibility: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.return-btn:hover {
+  background-color: #0f766e;
+  color: #fff;
+  transform: rotate(-45deg);
+}
+
+.site-footer {
+  padding: 1.5em 1em 2.5em;
+  color: #7d8a87;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .deck {
+    gap: 1.4em;
+  }
+}
+@media (max-width: 400px) {
+  .card {
+    width: min(330px, 92vw);
+    height: 440px;
+  }
+  .site-header {
+    padding-top: 2.5em;
+  }
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(22.0639834881%, 90.092879257%, 84.8090815273%);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0f766e;
+}
